@@ -58,19 +58,17 @@ namespace AccountingNote.DBSource
             }
         }
 
-        public static void ModifyData(int ID, string connStr, string dbCommand, List<SqlParameter> paramList)
+        public static int ModifyData(string connStr, string dbCommand, List<SqlParameter> paramList)
         {
+            // connect db execute
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 using (SqlCommand comm = new SqlCommand(dbCommand, conn))
                 {
-                    comm.Parameters.AddWithValue("@id", ID);
-
-
                     comm.Parameters.AddRange(paramList.ToArray());
                     conn.Open();
-                    comm.ExecuteNonQuery();
-
+                    int effectRowsCount = comm.ExecuteNonQuery();
+                    return effectRowsCount;
                 }
             }
         }

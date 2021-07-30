@@ -133,7 +133,7 @@ namespace AccountingNote.DBSource
             }
         }
 
-        public static void UpdateAccounting(int ID, string userID, string caption, int amount, int actType, string body)
+        public static bool UpdateAccounting(int ID, string userID, string caption, int amount, int actType, string body)
         {
             //<<< check input >>>
             if (amount < 0 || amount > 1000000)
@@ -142,8 +142,7 @@ namespace AccountingNote.DBSource
                 throw new ArgumentException("ActTyre must be 0 or 1. ");
 
             //<<< check input >>>
-
-            string connStr = GetConnectionString();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@"
                     UPDATE [Accounting]    
@@ -157,40 +156,38 @@ namespace AccountingNote.DBSource
                      WHERE 
                          ID = @id
                 ";
+            List<SqlParameter> paramList = new List<SqlParameter>();
+
+
             // connet db & execute
-            using (SqlConnection conn = new SqlConnection(connStr))
+            
+             paramList.Add(new SqlParameter("@userID", userID));
+             paramList.Add(new SqlParameter("@caption", caption));
+             paramList.Add(new SqlParameter("@amount", amount));
+             paramList.Add(new SqlParameter("@actType", actType));
+             paramList.Add(new SqlParameter("@createDate", DateTime.Now));
+             paramList.Add(new SqlParameter("@body", body));
+             paramList.Add(new SqlParameter("@id", ID));
+
+            try
             {
-                using (SqlCommand comm = new SqlCommand(dbCommand, conn))
-                {
-                    comm.Parameters.AddWithValue("@userID", userID);
-                    comm.Parameters.AddWithValue("@caption", caption);
-                    comm.Parameters.AddWithValue("@amount", amount);
-                    comm.Parameters.AddWithValue("@actType", actType);
-                    comm.Parameters.AddWithValue("@createDate", DateTime.Now);
-                    comm.Parameters.AddWithValue("@body", body);
-                    comm.Parameters.AddWithValue("@id", ID);
+                int effectRow = DBHelper.ModifyData(connStr, dbCommand, paramList);
 
-                    try
-                    {
-                        conn.Open();
-                        int effectRow = comm.ExecuteNonQuery();
-
-                        //if (effectRow == 1)
-                        //    return true;
-                        //else
-                        //    return false;
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.WriteLog(ex);
-                    }
-                }
+                if (effectRow == 1)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return false;
             }
         }
 
         public static void DeleteAccounting(int ID)
         {
-            string connStr = GetConnectionString();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@"
                     DELETE [Accounting]                      
@@ -203,8 +200,9 @@ namespace AccountingNote.DBSource
 
             try
             {
-                DBHelper.ModifyData(ID, connStr, dbCommand, paramList);
+                DBHelper.ModifyData(connStr, dbCommand, paramList);
             }
+
             catch (Exception ex)
             {
                 Logger.WriteLog(ex);

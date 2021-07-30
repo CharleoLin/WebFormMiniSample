@@ -25,6 +25,7 @@ namespace AccountingNote.SystemAdimin
 
                 if (currentUser == null)
                 {
+                    this.Session["UserLogInfo"] = null;
                     Response.Redirect("/Login.aspx");
                     return;
                 }

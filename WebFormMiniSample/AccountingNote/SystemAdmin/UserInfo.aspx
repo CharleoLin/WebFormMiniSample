@@ -17,35 +17,32 @@
             </tr>
             <tr>
                 <td>
-                    <a herf="UserInfo.aspx">使用者資訊</a><br />
-                    <a herf="AccountingList.aspx">流水帳管理</a>
+                    <a href="UserInfo.aspx">使用者資訊</a><br />
+                    <a href="AccountingList.aspx">流水帳管理</a>
                 </td>
-                <td>        
+                <td>      
+                    <%--這裡放主要內容--%>
                     <table>
                         <tr>
-                            <th>帳號</th>                
+                            <th>Account</th>                
                             <td>                    
-                                <asp:Literal ID="liAcc" runat="server"></asp:Literal>                
-
-                            </td>            
-
+                                <asp:Literal ID="ltAccount" runat="server"></asp:Literal>  
+                            </td>    
                         </tr>            
                         <tr>                
-                            <th>名字</th>                
+                            <th>Name</th>                
                             <td>                    
-                                <asp:Literal ID="liName" runat="server"></asp:Literal>                
-
-                            </td>            
-
+                                <asp:Literal ID="ltName" runat="server"></asp:Literal>  
+                            </td>        
                         </tr>            
                         <tr>                
-                            <th>e-mail</th>                
+                            <th>Email</th>                
                             <td>                    
-                                <asp:Literal ID="liemail" runat="server"></asp:Literal>
+                                <asp:Literal ID="ltEmail" runat="server"></asp:Literal>
                             </td>
                         </tr>
                     </table>
-                    <asp:Button ID="Button1" runat="server" Text="登出" OnClick="Button1_Click" />
+                    <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
                 </td>
             </tr>
         </table> 

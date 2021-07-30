@@ -21,6 +21,7 @@
                     <a herf="AccountingList.aspx">流水帳管理</a>
                 </td>
                 <td>
+                   <%-- 這裡放主要內容--%>
                     <asp:Button ID="btnCreate" runat="server" Text="Add Accounting" OnClick="btnCreate_Click" />
                     <asp:GridView ID="gvAccountingList" runat="server" AutoGenerateColumns="False">  
                         <Columns>

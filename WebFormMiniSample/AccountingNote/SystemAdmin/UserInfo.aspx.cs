@@ -15,27 +15,29 @@ namespace AccountingNote.SystemAdimin
         {
             if (!this.IsPostBack)
             {
-                if (this.Session["UserLoginInfo"] is null)
+                if (this.Session["UserLoginInfo"] == null)
                 {
                     Response.Redirect("/Login.aspx");
                     return;
                 }
-                string acc = this.Session["UserLoginInfo"] as string;
-                DataRow dr = UserInfoManager.GetUserInfoByAccount(acc);
+                string account = this.Session["UserLoginInfo"] as string;
+                DataRow dr = UserInfoManager.GetUserInfoByAccount(account);
+
                 if (dr == null)
                 {
+                    this.Session["UserLoginIfo"] = null;
                     Response.Redirect("/Login.aspx");
                     return;
                 }
 
-                this.liAcc.Text = dr["Account"].ToString();
-                this.liName.Text = dr["Name"].ToString();
-                this.liemail.Text = dr["Email"].ToString();
+                this.ltAccount.Text = dr["Account"].ToString();
+                this.ltName.Text = dr["Name"].ToString();
+                this.ltEmail.Text = dr["Email"].ToString();
             }
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnLogout_Click(object sender, EventArgs e)
         {
             this.Session["UserLoginInfo"] = null;
             Response.Redirect("/Login.aspx");

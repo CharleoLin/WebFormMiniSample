@@ -24,39 +24,39 @@ namespace AccountingNote.SystemAdimin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// liAcc 控制項。
+        /// ltAccount 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal liAcc;
+        protected global::System.Web.UI.WebControls.Literal ltAccount;
 
         /// <summary>
-        /// liName 控制項。
+        /// ltName 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal liName;
+        protected global::System.Web.UI.WebControls.Literal ltName;
 
         /// <summary>
-        /// liemail 控制項。
+        /// ltEmail 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal liemail;
+        protected global::System.Web.UI.WebControls.Literal ltEmail;
 
         /// <summary>
-        /// Button1 控制項。
+        /// btnLogout 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnLogout;
     }
 }

@@ -189,7 +189,7 @@ namespace AccountingNote.DBSource
         }
 
         public static void DeleteAccounting(int ID)
-        {            
+        {
             string connStr = GetConnectionString();
             string dbCommand =
                 $@"
@@ -197,30 +197,18 @@ namespace AccountingNote.DBSource
                      WHERE 
                          ID = @id
                 ";
-            // connet db & execute
-            using (SqlConnection conn = new SqlConnection(connStr))
+
+            List<SqlParameter> paramList = new List<SqlParameter>();
+            paramList.Add(new SqlParameter("@id", ID));
+
+            try
             {
-                using (SqlCommand comm = new SqlCommand(dbCommand, conn))
-                {                   
-                    comm.Parameters.AddWithValue("@id", ID);
-
-                    try
-                    {
-                        conn.Open();
-                        int effectRow = comm.ExecuteNonQuery();
-
-                        //if (effectRow == 1)
-                        //    return true;
-                        //else
-                        //    return false;
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.WriteLog(ex);
-                    }
-                }
+                DBHelper.ModifyData(ID, connStr, dbCommand, paramList);
             }
-        }
-
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+            }           
+        }        
     }
 }

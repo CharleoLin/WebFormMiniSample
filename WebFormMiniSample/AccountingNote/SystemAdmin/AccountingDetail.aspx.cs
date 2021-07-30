@@ -104,8 +104,6 @@ namespace AccountingNote.SystemAdimin
             {
                 //Execute 'insert into db'
                 AccountingManager.CreateAccounting(userID, caption, amount, actType, body);
-                
-                Response.Redirect("/SystemAdmin/AccountingList.aspx");
             }            
             else
             {

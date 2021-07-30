@@ -13,7 +13,7 @@ namespace AccountingNote
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (this.Session["UserLogin"] != null )
+            if (AuthManager.IsLogined())
             {
                 this.PlcLogin.Visible = false;
                 Response.Redirect("/SystemAdmin/UserInfo.aspx");
@@ -29,9 +29,7 @@ namespace AccountingNote
             string inp_Account = this.txtAccount.Text;
             string inp_PWD = this.txtPWD.Text;
 
-            string msg;
-
-            if(!AuthManager.TryLogin(inp_Account, inp_PWD, out msg))
+            if (!AuthManager.TryLogin(inp_Account, inp_PWD, out string msg))
             {
                 this.ltlMsg.Text = msg;
                 return;

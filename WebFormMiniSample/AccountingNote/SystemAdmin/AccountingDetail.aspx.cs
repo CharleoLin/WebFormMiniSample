@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AccountingNote.DBSource;
+using AccountingNote.Auth;
 
 
 namespace AccountingNote.SystemAdimin
@@ -13,11 +14,12 @@ namespace AccountingNote.SystemAdimin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (this.Session["userLoginInfo"] == null)
+            if (!AuthManager.IsLogined())
             {
                 Response.Redirect("/Login.aspx");
                 return;
             }
+
             string account = this.Session["UserLoginInfo"] as string;
             var dr = UserInfoManager.GetUserInfoByAccount(account);
 
@@ -80,16 +82,15 @@ namespace AccountingNote.SystemAdimin
                 return;
             }
 
-            string account = this.Session["UserLoginInfo"] as string;
-            var dr = UserInfoManager.GetUserInfoByAccount(account);
+            UserInfoModel currentUser = AuthManager.GetCurrenUser();
 
-            if(dr == null)
+            if (currentUser == null)
             {
                 Response.Redirect("/Login.aspx");
                 return;
             }
 
-            string userID = dr["ID"].ToString();
+            string userID = currentUser.ID;
             string actTypeText = this.ddlActType.SelectedValue;
             string amountText = this.txtAmount.Text;
             string caption = this.txtCaption.Text;

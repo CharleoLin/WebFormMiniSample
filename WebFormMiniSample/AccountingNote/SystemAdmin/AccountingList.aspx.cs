@@ -20,15 +20,15 @@ namespace AccountingNote.SystemAdimin
                 Response.Redirect("/Login.aspx");
                 return;
             }
-            string account = this.Session["UserLoginInfo"] as string;
-            var dr = UserInfoManager.GetUserInfoByAccount(account);
+            var currentUser = AuthManager.GetCurrenUser();
 
-            if (dr == null)
+            if (currentUser == null)
             {
+                this.Session["UserLoginInfo"] = null;
                 Response.Redirect("/Login.aspx");
                 return;
             }
-            var dt = AccountingManager.GetAccountingList(dr["ID"].ToString());
+            var dt = AccountingManager.GetAccountingList(currentUser.ID);
 
             if (dt.Rows.Count > 0)
             {

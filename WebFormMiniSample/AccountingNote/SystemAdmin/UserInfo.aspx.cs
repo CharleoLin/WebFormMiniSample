@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using AccountingNote.DBSource;
+using AccountingNote.Auth;
 
 namespace AccountingNote.SystemAdimin
 {
@@ -15,33 +16,30 @@ namespace AccountingNote.SystemAdimin
         {
             if (!this.IsPostBack)
             {
-                if (this.Session["UserLoginInfo"] == null)
+                if (!AuthManager.IsLogined())
                 {
                     Response.Redirect("/Login.aspx");
                     return;
                 }
-                string account = this.Session["UserLoginInfo"] as string;
-                DataRow dr = UserInfoManager.GetUserInfoByAccount(account);
+                var currentUser = AuthManager.GetCurrenUser();
 
-                if (dr == null)
+                if (currentUser == null)
                 {
-                    this.Session["UserLoginIfo"] = null;
                     Response.Redirect("/Login.aspx");
                     return;
                 }
 
-                this.ltAccount.Text = dr["Account"].ToString();
-                this.ltName.Text = dr["Name"].ToString();
-                this.ltEmail.Text = dr["Email"].ToString();
+                this.ltAccount.Text = currentUser.Account;
+                this.ltName.Text = currentUser.Name;
+                this.ltEmail.Text = currentUser.Email;
             }
 
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
-            this.Session["UserLoginInfo"] = null;
+            AuthManager.Logout();
             Response.Redirect("/Login.aspx");
-
         }
     }
 }

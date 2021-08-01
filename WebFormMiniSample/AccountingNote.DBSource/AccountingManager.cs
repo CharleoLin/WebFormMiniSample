@@ -12,6 +12,9 @@ namespace AccountingNote.DBSource
 {
     public class AccountingManager
     {
+        /// <summary>查詢流水帳清單</summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static string GetConnectionString()
         {
             string val = ConfigurationManager.ConnectionStrings["DConnectionRA"].ConnectionString;
@@ -19,16 +22,16 @@ namespace AccountingNote.DBSource
         }
         public static DataTable GetAccountingList(string userID)
         {
-            string connStr = GetConnectionString();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
-                $@"
-                    ID
-                    Caption
-                    Amound
-                    ActType
+                $@" SELECT
+                    ID,
+                    Caption,
+                    Amount,
+                    ActType,
                     CreateDate
                     FROM Accounting
-                    WHERE User ID = @ID
+                    WHERE User ID = @userID
                 ";
 
             List<SqlParameter> list = new List<SqlParameter>();
@@ -45,16 +48,20 @@ namespace AccountingNote.DBSource
             }
         }
 
+        /// <summary>查詢流水帳</summary>
+        /// <param name="id"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static DataRow GetAccounting(int id, string userID)
         {
-            string connStr = GetConnectionString();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@" SELECT
-                    ID
-                    Caption
-                    Amound
-                    ActType
-                    CreateDate
+                    ID,
+                    Caption,
+                    Amount,
+                    ActType,
+                    CreateDate,
                     Body
                  FROM Accounting
                  WHERE User id = @id AND UserID = @userID
@@ -74,7 +81,12 @@ namespace AccountingNote.DBSource
                 return null;
             }
         }
-
+        /// <summary>建立流水帳</summary>
+        /// <param name="userID"></param>
+        /// <param name="caption"></param>
+        /// <param name="amount"></param>
+        /// <param name="actType"></param>
+        /// <param name="body"></param>
         public static void CreateAccounting(string userID, string caption, int amount, int actType, string body)
         {
             //<<< check input >>>
@@ -85,7 +97,7 @@ namespace AccountingNote.DBSource
 
             //<<< check input >>>
 
-            string connStr = GetConnectionString();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@"
                     INSERT INTO [dbo].[Accounting]
@@ -132,7 +144,14 @@ namespace AccountingNote.DBSource
                 }
             }
         }
-
+        /// <summary>變更流水帳</summary>
+        /// <param name="ID"></param>
+        /// <param name="userID"></param>
+        /// <param name="caption"></param>
+        /// <param name="amount"></param>
+        /// <param name="actType"></param>
+        /// <param name="body"></param>
+        /// <returns></returns>
         public static bool UpdateAccounting(int ID, string userID, string caption, int amount, int actType, string body)
         {
             //<<< check input >>>
@@ -157,7 +176,6 @@ namespace AccountingNote.DBSource
                          ID = @id
                 ";
             List<SqlParameter> paramList = new List<SqlParameter>();
-
 
             // connet db & execute
             
@@ -185,14 +203,15 @@ namespace AccountingNote.DBSource
             }
         }
 
+        /// <summary>刪除流水帳</summary>
+        /// <param name="ID"></param>
         public static void DeleteAccounting(int ID)
         {
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@"
                     DELETE [Accounting]                      
-                     WHERE 
-                         ID = @id
+                     WHERE ID = @id
                 ";
 
             List<SqlParameter> paramList = new List<SqlParameter>();

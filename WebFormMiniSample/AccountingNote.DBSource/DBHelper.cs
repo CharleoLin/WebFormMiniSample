@@ -49,10 +49,11 @@ namespace AccountingNote.DBSource
 
                         DataTable dt = new DataTable();
                         dt.Load(reader);
+
                         if (dt.Rows.Count == 0)
                             return null;
-                        DataRow dr = dt.Rows[0];
-                        return dr;                   
+                         
+                        return dt.Rows[0];              
                     
                 }
             }

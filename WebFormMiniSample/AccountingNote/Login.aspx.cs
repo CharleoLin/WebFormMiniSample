@@ -15,12 +15,12 @@ namespace AccountingNote
         {
             if (AuthManager.IsLogined())
             {
-                this.PlcLogin.Visible = false;
+                this.plcLogin.Visible = false;
                 Response.Redirect("/SystemAdmin/UserInfo.aspx");
             }
             else
             {
-                this.PlcLogin.Visible = true;
+                this.plcLogin.Visible = true;
             }
         }
 

@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using AccountingNote.DBSource;
 using AccountingNote.Auth;
-
+using System.Drawing;
 
 namespace AccountingNote.SystemAdimin
 {
@@ -15,6 +15,7 @@ namespace AccountingNote.SystemAdimin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //check is login.
             if (!AuthManager.IsLogined())
             {
                 Response.Redirect("/Login.aspx");
@@ -54,16 +55,27 @@ namespace AccountingNote.SystemAdimin
             if (row.RowType == DataControlRowType.DataRow)
             {
                 //Literal ltl = row.FindControl("ltActType") as Literal;
-                Label lbl = row.FindControl("lblType") as Label;
+                Label lbl = row.FindControl("lblActType") as Label;
 
 
                 var dr = row.DataItem as DataRowView;
                 int actType = dr.Row.Field<int>("ActType");
 
                 if (actType == 0)
+                {
                     lbl.Text = "支出";
+                }
+                    
                 else
+                {
                     lbl.Text = "收入";
+                }
+                if(dr.Row.Field<int>("Amount")>1500)
+                {
+                    lbl.ForeColor = Color.Red;
+                }
+                    
+
             }
         }
 

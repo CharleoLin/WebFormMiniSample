@@ -44,7 +44,7 @@
                     </asp:GridView>
 
                     <asp:PlaceHolder ID="plcNoData" runat="server" Visible="false">
-                        <p>
+                        <p style="color:red; background-color:cornflowerblue">
                             No Data in your Accounting Note.
                         </p>
                     </asp:PlaceHolder>                        

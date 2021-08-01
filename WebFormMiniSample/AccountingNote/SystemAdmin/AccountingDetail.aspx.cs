@@ -21,10 +21,11 @@ namespace AccountingNote.SystemAdimin
             }
 
             string account = this.Session["UserLoginInfo"] as string;
-            var dr = UserInfoManager.GetUserInfoByAccount(account);
+            var currentUser = AuthManager .GetCurrenUser();
 
-            if (dr == null)
+            if (currentUser == null)
             {
+                this.Session["UserLoginInfo"] = null;
                 Response.Redirect("/Login.aspx");
                 return;
             }
@@ -44,7 +45,7 @@ namespace AccountingNote.SystemAdimin
                     int id;
                     if (int.TryParse(idText, out id))
                     {
-                        var drAccounting = AccountingManager.GetAccounting(id, dr["ID"].ToString());
+                        var drAccounting = AccountingManager.GetAccounting(id, currentUser.ID);
 
                         if (drAccounting == null)
                         {

@@ -11,6 +11,8 @@ namespace AccountingNote.Auth
 {
     public class AuthManager
     {
+        /// <summary>負責處理登入的元件</summary>
+        /// <returns></returns>
         public static bool IsLogined()
         {
             if (HttpContext.Current.Session["UserLoginInfo"] == null)
@@ -19,6 +21,8 @@ namespace AccountingNote.Auth
                 return true;
         }
 
+        /// <summary>取得已登入的使用者資訊(如果沒有登入就回傳 null)</summary>
+        /// <returns></returns>
         public static UserInfoModel GetCurrenUser()
         {
             string account = HttpContext.Current.Session["UserLoginInfo"] as string;
@@ -41,26 +45,38 @@ namespace AccountingNote.Auth
             return model;
         }
 
+        /// <summary>登出</summary>
         public static void Logout()
         {
             HttpContext.Current.Session["UserLoginInfo"] = null;
         }
 
+        /// <summary>嘗試登入</summary>
+        /// <param name="account"></param>
+        /// <param name="pwd"></param>
+        /// <param name="errorMsg"></param>
+        /// <returns></returns>
         public static bool TryLogin(string account, string pwd, out string errorMsg)
         {
-            errorMsg = "Account / PWD is required. ";
-            return false;
+            if(string.IsNullOrWhiteSpace(account) || string.IsNullOrWhiteSpace(pwd))
+            {
+                errorMsg = "Account / PWD is required. ";
+                return false;
+            }           
 
+            //read db and check
             var dr = UserInfoManager.GetUserInfoByAccount(account);
 
+            //check null
             if(dr == null)
             {
                 errorMsg = $"Account {account} doesn't exists. ";
                 return false;
             }
 
+            //check accoint / pwd
             if (string.Compare(dr["Account"].ToString(), account, true) == 0 &&
-               string.Compare(dr["PWD"].ToString(), pwd, false) == 0)
+                string.Compare(dr["PWD"].ToString(), pwd, false) == 0)
             {
                 HttpContext.Current.Session["UserLoginInfo"] = dr["Account"].ToString();
                 
@@ -72,8 +88,6 @@ namespace AccountingNote.Auth
                 errorMsg = "Login fail. Please check Account / PWD. ";
                 return false;
             }
-        }
-
-        
+        }        
     }
 }

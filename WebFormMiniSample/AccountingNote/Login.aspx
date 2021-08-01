@@ -9,7 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:PlaceHolder ID="PlcLogin" runat="server" Visible="False">
+        <asp:PlaceHolder ID="plcLogin" runat="server" Visible="False">
         Account: <asp:TextBox ID="txtAccount" runat="server"></asp:TextBox><br />
         Password<asp:TextBox ID="txtPWD" runat="server" TextMode="Password"></asp:TextBox><br />
         <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" /><br />

@@ -7,83 +7,65 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace AccountingNote.SystemAdmin
+namespace AccountingNote.UserControls
 {
 
 
-    public partial class AccountingDetail
+    public partial class usPager
     {
 
         /// <summary>
-        /// form1 控制項。
+        /// aLinkPage1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLinkPage1;
 
         /// <summary>
-        /// ddlActType 控制項。
+        /// aLinkPage2 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlActType;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLinkPage2;
 
         /// <summary>
-        /// txtAmount 控制項。
+        /// aLinkPage3 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAmount;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLinkPage3;
 
         /// <summary>
-        /// txtCaption 控制項。
+        /// aLinkPage4 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCaption;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLinkPage4;
 
         /// <summary>
-        /// txtDesc 控制項。
+        /// aLinkPage5 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDesc;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLinkPage5;
 
         /// <summary>
-        /// btnSave 控制項。
+        /// ltPager 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
-
-        /// <summary>
-        /// btnDelete 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
-
-        /// <summary>
-        /// ltMsg 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltMsg;
+        protected global::System.Web.UI.WebControls.Literal ltPager;
     }
 }

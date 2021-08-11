@@ -7,56 +7,56 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace AccountingNote.SystemAdmin
+namespace AccountingNote
 {
 
 
-    public partial class UserInfo
+    public partial class UserList
     {
 
         /// <summary>
-        /// form1 控制項。
+        /// btnNew 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Button btnNew;
 
         /// <summary>
-        /// ltAccount 控制項。
+        /// GridView1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltAccount;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
-        /// ltName 控制項。
+        /// usPager 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltName;
+        protected global::AccountingNote.UserControls.usPager usPager;
 
         /// <summary>
-        /// ltEmail 控制項。
+        /// usPager1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltEmail;
+        protected global::AccountingNote.UserControls.usPager usPager1;
 
         /// <summary>
-        /// btnLogout 控制項。
+        /// usPager2 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogout;
+        protected global::AccountingNote.UserControls.usPager usPager2;
     }
 }

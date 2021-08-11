@@ -4,16 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
- namespace AccountingNote.DBSource
+namespace AccountingNote.DBSource
 {
-    public class Logger    
-    {        
+    public class Logger
+    {
         public static void WriteLog(Exception ex)
         {
-            string msg = $@"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}{ex.ToString()}";
+            string msg =
+                $@" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}
+                    {ex.ToString()}
+                ";
 
-            string logPath = "D:\\Log\\log.log";
+            string logPath = "D:\\Logs\\Log.log";
             string folderPath = System.IO.Path.GetDirectoryName(logPath);
+
             if (!System.IO.Directory.Exists(folderPath))
                 System.IO.Directory.CreateDirectory(folderPath);
 
